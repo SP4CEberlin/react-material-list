@@ -2,12 +2,37 @@ import {Container} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 import {Material} from "../../models/model";
 import MaterialListElement from "./materialListElement";
+import {useLocation} from "react-router-dom";
 
 export function MaterialList( probs:any ) {
+    // Get the Materials via probs and store it in the localStorage.
+    // This should be a service or some kind of data-store.
+    // Look into 'flux', 'redux' or services-architecture for react.
+
+    const location = useLocation();
     const [materials, setMaterials] = useState<Material[]>()
+
     useEffect( () => {
-        setMaterials(probs.message);
-    }, [probs.message])
+        if (probs.message) {
+            if (probs.message.length !== 0) {
+                setMaterials(probs.message);
+                localStorage.setItem('dataStore', JSON.stringify(probs.message));
+            } else {
+                const savedData = localStorage.getItem('dataStore') || "";
+                setMaterials(JSON.parse(savedData));
+            }
+        }
+    }, [probs.message]);
+
+    if (location.state) {
+        const updateMaterialId = location.state.data.id;
+        let updateMaterial = materials?.find( m => m.id === updateMaterialId);
+        if ( updateMaterial ) {
+            updateMaterial.name = location.state.data.name
+            updateMaterial.author = location.state.data.author
+        }
+    }
+
     return (
         <Container>
             Material list

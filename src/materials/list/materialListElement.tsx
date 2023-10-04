@@ -1,10 +1,16 @@
 import {Material} from "../../models/model";
 import {Button} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 const MaterialListElement = (data:any) => {
     const material: Material = data.message;
+    const navigate = useNavigate();
     const editMaterial = (material: Material) => {
-        console.log(material);
+        navigate( "../edit" , {
+            state: {
+                data: material
+            }
+        })
     }
     return (
         <tr key={material.id}>

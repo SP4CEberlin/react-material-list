@@ -1,8 +1,70 @@
-import {Container} from "react-bootstrap";
+import {Button, Container, Form} from "react-bootstrap";
+import {useLocation, useNavigate} from "react-router-dom";
+import {Material} from "../../models/model";
+import {useState} from "react";
 
 export function MaterialEdit(){
+    const location = useLocation();
+    const navigate = useNavigate();
+    let material: Material = location.state.data;
+
+    const [formData , setFormData] = useState( {
+        id: material.id,
+        name: material.name,
+        author: material.author
+    })
+
+    // Find out how to centralize this 'handleInputChange' functions centralized,
+    // this can come in handy for other forms.
+    const handleInputChange = (event: { target: any; }) => {
+        const { target } = event;
+        const { name, value } = target;
+        setFormData({
+            ...formData, // Keep existing form data
+            [name]: value // Update form data for the input field that changed
+        });
+    }
+
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
+        event.preventDefault();
+        const dataToSubmit = {
+            ...formData
+        };
+        navigate('../materials', {
+            state: {
+                data: dataToSubmit
+            }})
+    }
+
     return (
-        <Container>Material edit</Container>
+        <Container>Material edit
+            <Form onSubmit={handleSubmit}>
+                <Form.Group className="m-form-group">
+                    <Form.Label>Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="name"
+                        placeholder="Material Name"
+                        defaultValue={material.name}
+                        onChange={handleInputChange}
+                    />
+                </Form.Group>
+                <Form.Group className="m-form-group">
+                    <Form.Label>Author</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="author"
+                        placeholder="Author"
+                        defaultValue={material.author}
+                        onChange={handleInputChange}
+                    />
+                </Form.Group>
+                <hr/>
+                <Button className="a-button float-end" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Container>
     )
 
 }

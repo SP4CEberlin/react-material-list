@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Material} from "./models/model";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import MaterialList from "./materials/list/materialList";
 import MaterialEdit from "./materials/edit/materialEdit";
 
@@ -34,7 +34,7 @@ function App() {
         </ul>
         <BrowserRouter>
             <Routes>
-                <Route path="/"></Route>
+                <Route path="/" element={<Navigate to={"/materials"}/>}></Route>
                 <Route path="/materials" element={<MaterialList />}></Route>
                 <Route path="/edit" element={<MaterialEdit />}></Route>
             </Routes>

@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Material} from "./models/model";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import MaterialList from "./materials/list/materialList";
+import MaterialEdit from "./materials/edit/materialEdit";
 
 function App() {
   // todo:
@@ -29,6 +32,13 @@ function App() {
                 ))
             }
         </ul>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/"></Route>
+                <Route path="/materials" element={<MaterialList />}></Route>
+                <Route path="/edit" element={<MaterialEdit />}></Route>
+            </Routes>
+        </BrowserRouter>
 
     </div>
   );

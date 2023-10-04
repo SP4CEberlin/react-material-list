@@ -11,7 +11,9 @@ export function MaterialEdit(){
     const [formData , setFormData] = useState( {
         id: material.id,
         name: material.name,
-        author: material.author
+        author: material.author,
+        isHidden: material.isHidden,
+        type: material.type
     })
 
     // Find out how to centralize this 'handleInputChange' functions centralized,
@@ -36,6 +38,16 @@ export function MaterialEdit(){
             }})
     }
 
+    //todo: simplify this
+    const swapValue = ( m:Material ) => {
+        material.isHidden = !material.isHidden;
+        setFormData({
+            ...formData, // Keep existing form data
+            isHidden: m.isHidden // Update form data for the input field that changed
+        });
+        return m;
+    }
+
     return (
         <Container>Material edit
             <Form onSubmit={handleSubmit}>
@@ -57,6 +69,26 @@ export function MaterialEdit(){
                         placeholder="Author"
                         defaultValue={material.author}
                         onChange={handleInputChange}
+                    />
+                </Form.Group>
+                <Form.Group className="m-form-group">
+                    <Form.Label>Phase</Form.Label>
+                    <Form.Select
+                        defaultValue={material.type}
+                        onChange={handleInputChange}
+                        name="type">
+                        <option value="0">continues (liquid)</option>
+                        <option value="1">dispersed (particles)</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="m-form-group">
+                    <Form.Check
+                        type="switch"
+                        id="custom-switch"
+                        name="isHidden"
+                        label={ material.isHidden ? " : Hidden" : " : Not hidden" }
+                        defaultChecked={material.isHidden}
+                        onClick={ () => swapValue(material)}
                     />
                 </Form.Group>
                 <hr/>

@@ -1,4 +1,4 @@
-import {Button, Container, Form} from "react-bootstrap";
+import {Button, Card, CardBody, CardHeader, Container, Form} from "react-bootstrap";
 import {useLocation, useNavigate} from "react-router-dom";
 import {Material} from "../../models/model";
 import {useState} from "react";
@@ -49,53 +49,58 @@ export function MaterialEdit(){
     }
 
     return (
-        <Container>Material edit
-            <Form onSubmit={handleSubmit}>
-                <Form.Group className="m-form-group">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="name"
-                        placeholder="Material Name"
-                        defaultValue={material.name}
-                        onChange={handleInputChange}
-                    />
-                </Form.Group>
-                <Form.Group className="m-form-group">
-                    <Form.Label>Author</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="author"
-                        placeholder="Author"
-                        defaultValue={material.author}
-                        onChange={handleInputChange}
-                    />
-                </Form.Group>
-                <Form.Group className="m-form-group">
-                    <Form.Label>Phase</Form.Label>
-                    <Form.Select
-                        defaultValue={material.type}
-                        onChange={handleInputChange}
-                        name="type">
-                        <option value="0">continues (liquid)</option>
-                        <option value="1">dispersed (particles)</option>
-                    </Form.Select>
-                </Form.Group>
-                <Form.Group className="m-form-group">
-                    <Form.Check
-                        type="switch"
-                        id="custom-switch"
-                        name="isHidden"
-                        label={ material.isHidden ? " : Hidden" : " : Not hidden" }
-                        defaultChecked={material.isHidden}
-                        onClick={ () => swapValue(material)}
-                    />
-                </Form.Group>
-                <hr/>
-                <Button className="a-button float-end" type="submit">
-                    Submit
-                </Button>
-            </Form>
+        <Container>
+            <Card>
+                <CardHeader>Edit Material</CardHeader>
+                <CardBody>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="m-form-group">
+                            <Form.Label>Name</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="name"
+                                placeholder="Material Name"
+                                defaultValue={material.name}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+                        <Form.Group className="m-form-group">
+                            <Form.Label>Author</Form.Label>
+                            <Form.Control
+                                type="text"
+                                name="author"
+                                placeholder="Author"
+                                defaultValue={material.author}
+                                onChange={handleInputChange}
+                            />
+                        </Form.Group>
+                        <Form.Group className="m-form-group">
+                            <Form.Label>Phase</Form.Label>
+                            <Form.Select
+                                defaultValue={material.type}
+                                onChange={handleInputChange}
+                                name="type">
+                                <option value="0">continues (liquid)</option>
+                                <option value="1">dispersed (particles)</option>
+                            </Form.Select>
+                        </Form.Group>
+                        <Form.Group className="m-form-group">
+                            <Form.Check
+                                type="switch"
+                                id="custom-switch"
+                                name="isHidden"
+                                label={ material.isHidden ? " : Hidden" : " : Not hidden" }
+                                defaultChecked={material.isHidden}
+                                onClick={ () => swapValue(material)}
+                            />
+                        </Form.Group>
+                        <hr/>
+                        <Button className="a-button float-end" type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                </CardBody>
+            </Card>
         </Container>
     )
 

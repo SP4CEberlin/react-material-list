@@ -3,6 +3,7 @@ import {Material} from "./models/model";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import MaterialList from "./materials/list/materialList";
 import MaterialEdit from "./materials/edit/materialEdit";
+import logo from "./images/lum-logo.png"
 
 function App() {
     const [materials , setMaterial] = useState<Material[]>()
@@ -21,7 +22,9 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Welcome to LUM material list.</h1>
+      <a href="/materials">
+          <img src={logo} alt="LUM GmbH Logo"/>
+      </a>
 
         {/* This is comparable to routing and router outlet in Angular */}
         <BrowserRouter>

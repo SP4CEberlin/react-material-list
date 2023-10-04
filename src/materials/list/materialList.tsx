@@ -25,11 +25,14 @@ export function MaterialList( probs:any ) {
     }, [probs.message]);
 
     if (location.state) {
+        // get data from edit-form
         const updateMaterialId = location.state.data.id;
         let updateMaterial = materials?.find( m => m.id === updateMaterialId);
         if ( updateMaterial ) {
-            updateMaterial.name = location.state.data.name
-            updateMaterial.author = location.state.data.author
+            updateMaterial.name = location.state.data.name;
+            updateMaterial.author = location.state.data.author;
+            updateMaterial.type = location.state.data.type;
+            updateMaterial.isHidden = location.state.data.isHidden;
         }
     }
 

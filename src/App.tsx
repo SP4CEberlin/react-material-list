@@ -25,17 +25,12 @@ function App() {
   return (
     <div className="App">
       <h1>Welcome to LUM material list.</h1>
-        <ul>
-            {
-                materials?.map( (material) => (
-                    <li key={material.id}>{material.name}</li>
-                ))
-            }
-        </ul>
+
+        {/* This is comparable to routing and router outlet in Angular */}
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navigate to={"/materials"}/>}></Route>
-                <Route path="/materials" element={<MaterialList />}></Route>
+                <Route path="/materials" element={<MaterialList message={materials}/>}></Route>
                 <Route path="/edit" element={<MaterialEdit />}></Route>
             </Routes>
         </BrowserRouter>

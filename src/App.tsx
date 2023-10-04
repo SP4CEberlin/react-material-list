@@ -5,9 +5,6 @@ import MaterialList from "./materials/list/materialList";
 import MaterialEdit from "./materials/edit/materialEdit";
 
 function App() {
-  // todo:
-  //  add add list
-  //  add edit form
     const [materials , setMaterial] = useState<Material[]>()
     useEffect( () => {
         const fetchMaterialData = async () => {
@@ -20,7 +17,7 @@ function App() {
             }
         }
         fetchMaterialData().then( n => null);
-    })
+    }, [])
 
   return (
     <div className="App">

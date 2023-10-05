@@ -4,23 +4,23 @@ import MaterialList from "./materials/list/materialList";
 import MaterialEdit from "./materials/edit/materialEdit";
 import logo from "./images/lum-logo.png"
 import {useDispatch} from "react-redux";
-import {addMaterialList} from "./features/material/materialSlice";
-
+import {initMaterialList} from "./features/material/materialSlice";
 
 function App() {
     const dispatch = useDispatch();
+
     useEffect( () => {
         const fetchMaterialData = async () => {
             try {
-                const res = await fetch( './materialsMock.json');
+                const res = await fetch('./materialsMock.json');
                 const data = await res.json();
-                dispatch(addMaterialList(data));
-            } catch ( error) {
+                dispatch(initMaterialList(data));
+            } catch (error) {
                 console.error('Loading Error.', error);
             }
         }
-        fetchMaterialData().then( n => null);
-    }, [])
+        fetchMaterialData().then(n => null);
+    }, [dispatch])
 
 
   return (

@@ -14,6 +14,9 @@ export const todoSlice = createSlice({
     name: 'materialsObjectList',
     initialState,
     reducers: {
+        initMaterialList:(state,action:PayloadAction<Material[]>) => {
+            state.materialsObjectList = action.payload;
+        },
         addMaterial: (state , action:PayloadAction<Material>) => {
             const {id , name, type, author, isHidden} = action.payload;
             state.materialsObjectList.push( { id, name, type, author, isHidden } )
@@ -37,6 +40,6 @@ export const todoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addMaterial, addMaterialList, editMaterial } = todoSlice.actions
+export const { initMaterialList, addMaterial, addMaterialList, editMaterial } = todoSlice.actions
 
 export default todoSlice.reducer

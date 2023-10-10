@@ -8,7 +8,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import {store} from './store'
-
+// IDE mixes quotation marks.. ' " ... fix IDE
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

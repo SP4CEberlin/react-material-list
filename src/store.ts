@@ -1,6 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import materialReducer from './features/material/materialSlice'
 
+// Take a look in FLUX for multiple stores.
+// The is also an angular service-like approach possible.
+
 export const store = configureStore({
     reducer: {
         materials: materialReducer

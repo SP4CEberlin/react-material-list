@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
+// quotation marks, IDE settings
 import {Material} from "../../models/model";
 
 interface MaterialState {
+    // use better wording, or explain in comments
     materialsObjectList: Material[];
 }
 
@@ -29,6 +31,8 @@ export const todoSlice = createSlice({
             const newMaterial = {id,name,type,author,isHidden};
             let updateMaterial = state.materialsObjectList.find( m => m.id === newMaterial.id);
             if (updateMaterial){
+                // better:
+                // updateMaterial = newMaterial;
                 updateMaterial.id = newMaterial.id;
                 updateMaterial.name = newMaterial.name;
                 updateMaterial.type = newMaterial.type;

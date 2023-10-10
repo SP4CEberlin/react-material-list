@@ -9,12 +9,14 @@ import {editMaterial} from "../../features/material/materialSlice";
 export function MaterialList() {
 
     const location = useLocation();
+    // must this be "any", or is there a stronger way to type it?
 
     const materialsObjectList = useSelector( (state: RootState) => state.materials.materialsObjectList);
     const dispatch = useDispatch();
 
     if (location.state) {
-        // get data from edit-form
+        // Get data from edit-form.
+        // If this is typed better it could be used easier.
         const {id , name, type, author, isHidden} = location.state.data;
         dispatch(editMaterial({ id, name, type, author, isHidden }))
     }

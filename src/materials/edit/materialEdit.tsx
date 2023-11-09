@@ -6,6 +6,7 @@ import {useState} from "react";
 export function MaterialEdit(){
     const location = useLocation();
     const navigate = useNavigate();
+    // find out how to strong type thia state.data
     let material: Material = location.state.data;
 
     const [formData , setFormData] = useState( {
@@ -28,6 +29,7 @@ export function MaterialEdit(){
     }
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
+        //explain "event.preventDefault();" in comments
         event.preventDefault();
         const dataToSubmit = {
             ...formData
@@ -48,6 +50,7 @@ export function MaterialEdit(){
         return m;
     }
 
+    // the Form.Groups could be combined as generic component.
     return (
         <Container>
             <Card>
